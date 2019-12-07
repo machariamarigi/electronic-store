@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+
+import { ProductsService } from './products.service';
 
 @Component({
   selector: 'es-root',
@@ -6,5 +9,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'electronic-store';
+  products$: Observable<any>;
+
+  constructor(private productsService: ProductsService) {
+    this.products$ = this.productsService.getProducts();
+  }
 }
